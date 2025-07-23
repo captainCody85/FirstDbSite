@@ -7,7 +7,7 @@ window.onload = () => fetchTasks();
 
 // GET tasks
 function fetchTasks() {
-  fetch("http://localhost:8080/tasks")
+  fetch("https://first-database-web-app.vercel.app/tasks")
     .then(res => res.json())
     .then(tasks => {
       tableBody.innerHTML = ""; // clear before rendering
@@ -29,7 +29,7 @@ function fetchTasks() {
         completeBtn.textContent = "✔️";
         completeBtn.className = "btn btn-success btn-sm me-2";
         completeBtn.onclick = () => {
-          fetch(`http://localhost:8080/tasks/${task.id}`, {
+          fetch(`https://first-database-web-app.vercel.app/tasks/${task.id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -44,7 +44,7 @@ function fetchTasks() {
         deleteBtn.textContent = "🗑️";
         deleteBtn.className = "btn btn-danger btn-sm";
         deleteBtn.onclick = () => {
-          fetch(`http://localhost:8080/tasks/${task.id}`, {
+          fetch(`https://first-database-web-app.vercel.app/tasks/${task.id}`, {
             method: "DELETE"
           }).then(() => fetchTasks());
         };
@@ -66,7 +66,7 @@ addTaskBtn.onclick = () => {
   const desc = taskInput.value.trim();
   if (!desc) return;
 
-  fetch("http://localhost:8080/tasks", {
+  fetch("https://first-database-web-app.vercel.app/tasks", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ description: desc, completed: false })
